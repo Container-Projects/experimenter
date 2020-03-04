@@ -95,6 +95,12 @@ up_detached: compose_stop compose_build
 generate_docs: compose_build
 	$(COMPOSE) run app sh -c "$(GENERATE_DOCS)"
 
+eslint_fix: test_build
+	$(COMPOSE) run app sh -c "$(ESLINT_FIX)"
+
+black_fix: test_build
+	$(COMPOSE) run app sh -c "$(BLACK_FIX)"
+
 code_format: compose_build
 	$(COMPOSE) run app sh -c "$(BLACK_FIX)&&$(ESLINT_FIX)"
 
